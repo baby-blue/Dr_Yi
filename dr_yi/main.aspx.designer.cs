@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace dr_yi {
+namespace analyzer {
     
     
     public partial class main {
