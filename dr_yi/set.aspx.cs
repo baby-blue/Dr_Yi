@@ -8,6 +8,7 @@ using analyzer;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Configuration;
+using connecter;
 
 namespace dr_yi
 {
@@ -48,15 +49,11 @@ namespace dr_yi
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            string conn = ConfigurationManager.ConnectionStrings["drgs_constr"].ConnectionString;
-            //string conn = "Data Source=(local)\\MSSQLSERVER01;Initial Catalog=drgsdb;Persist Security Info=True;User ID=sa;Password=kiss";
-            SqlConnection sc = new SqlConnection(conn);
-            sc.Open();
-            SqlBulkCopy sbc = new SqlBulkCopy(sc);
-            sbc.DestinationTableName = "drgsdb.dbo.fkb";
-            sbc.WriteToServer(myds.Tables[0]);
-            sc.Close();
-
+            int maxid = 0;
+            string target = "drgsdb.dbo.fkb";
+            Sql_connecter mysc = new Sql_connecter();
+            maxid = mysc.getmaxid(target);
+            mysc.writetoserver(myds.Tables[0],target);
         }
 
         protected void Fixds()

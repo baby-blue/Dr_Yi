@@ -58,6 +58,7 @@ CREATE TABLE [dbo].[fkb] (--反馈表，excel上传表
 --[cyksid] [int],--出院科室id
 )
 
+/*
 CREATE TABLE [dbo].[zb] (--主表，上传表后生成
 [id] [int] NOT NULL identity PRIMARY KEY,
 [jsrq] [datetime] NULL,--结算日期
@@ -72,5 +73,12 @@ CREATE TABLE [dbo].[zb] (--主表，上传表后生成
 [ssdm] [bmchar],--手术代码
 [ssmc] [mcvarchar],--手术名称
 [fy] [money],--医疗费用
+[ybzyh] [zyhchar],--医保住院号
+)
+*/
+
+CREAT TABLE [dbo].[ljb](--链接表，医保住院号、首页序号索引
+[id] [int] NOT NULL identity PRIMARY KEY,
+[cissyxh] [int] NULL,--首页序号
 [ybzyh] [zyhchar],--医保住院号
 )

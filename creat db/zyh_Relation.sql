@@ -1,5 +1,5 @@
 SELECT
- isnull(vw.ZYHM,fkb.ybzyh) as zyh,fkb.ybzyh
+ vw.SYXH as cissyxh,fkb.ybzyh
  FROM fkb
  LEFT JOIN
  OPENDATASOURCE( 'SQLOLEDB','Data Source=172.16.1.2;User ID=sa;Password=sql2k5').CISDB.dbo.EMR_BRSYK as vw
