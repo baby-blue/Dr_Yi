@@ -77,8 +77,11 @@ CREATE TABLE [dbo].[zb] (--主表，上传表后生成
 )
 */
 
-CREAT TABLE [dbo].[ljb](--链接表，医保住院号、首页序号索引
+CREATE TABLE [dbo].[ljb](--链接表，医保住院号、首页序号索引
 [id] [int] NOT NULL identity PRIMARY KEY,
 [cissyxh] [int] NULL,--首页序号
 [ybzyh] [zyhchar],--医保住院号
 )
+
+create procedure writetoljb
+as
