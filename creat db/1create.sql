@@ -46,15 +46,19 @@ CREATE TABLE [dbo].[ssdm] (--手术代码表，手术收费表
 CREATE TABLE [dbo].[fkb] (--反馈表，excel上传表
 [id] [int] NOT NULL identity PRIMARY KEY,
 [fzbm] [bmchar],--分组编码
+[fzmc] [mcvarchar],--分组名称
 [ybzyh] [zyhchar],--医保住院号
 [hzxm] [xmchar],--姓名字段
 [cyks] [xmchar],--出院科室
 [ssbm] [bmchar],--手术及操作编码，icd9
+[ssmc] [mcvarchar],--手术名称
 [cwh] [char](6) NULL,--床位
 [ryrq] [datetime] NULL,--入院日期
 [cyrq] [datetime] NULL,--出院日期
 [jsrq] [datetime] NULL,--结算日期
 [fy] [money],--医疗费用
+[pjfy] [money],--入组平均费用
+
 --[cyksid] [int],--出院科室id
 )
 
@@ -79,9 +83,29 @@ CREATE TABLE [dbo].[zb] (--主表，上传表后生成
 
 CREATE TABLE [dbo].[ljb](--链接表，医保住院号、首页序号索引
 [id] [int] NOT NULL identity PRIMARY KEY,
-[cissyxh] [int] NULL,--首页序号
-[ybzyh] [zyhchar],--医保住院号
+[hissyxh] [int] NULL,--首页序号
+[ybzyh] [zyhchar] Null,--医保住院号
 )
 
+CREATE TABLE [dbo].[ksbmb](--床位编码，来自医院数据库
+[id] [int] NOT NULL ,
+[name] [xmchar] NULL,--科室名称
+)
+
+go
+
+--写入数据
+/*
+insert into ksbmb select id,name from OPENDATASOURCE( 'SQLOLEDB','Data Source=172.16.1.2;User ID=sa;Password=sql2k5').THIS4.dbo.YY_KSBMK 
+
+go
+*/
+--创建过程
+
 create procedure writetoljb
+as
+
+go
+
+create procedure lhcx
 as

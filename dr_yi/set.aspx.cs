@@ -61,7 +61,7 @@ namespace dr_yi
             myds.Tables[0].Columns.Remove("序号");
             myds.Tables[0].Columns.Remove("审核状态");
             myds.Tables[0].Columns.Remove("基金类型");
-            myds.Tables[0].Columns.Remove("分组名称");
+           // myds.Tables[0].Columns.Remove("分组名称");
             myds.Tables[0].Columns.Remove("基准点数");
             myds.Tables[0].Columns.Remove("成本系数");
             myds.Tables[0].Columns.Remove("重新反馈理由");
@@ -71,7 +71,7 @@ namespace dr_yi
             myds.Tables[0].Columns.Remove("人员类别");
             myds.Tables[0].Columns.Remove("医生");
             myds.Tables[0].Columns.Remove("新技术分组");
-            myds.Tables[0].Columns.Remove("主手术名称");
+            //myds.Tables[0].Columns.Remove("主手术名称");
             myds.Tables[0].Columns.Remove("分组调整原因");
             myds.Tables[0].Columns.Remove("期望主诊断");
             myds.Tables[0].Columns.Remove("期望主诊断名称");
@@ -88,6 +88,8 @@ namespace dr_yi
             myds.Tables[0].Columns["主手术编码"].ColumnName = "ssbm";
             myds.Tables[0].Columns["床位号"].ColumnName = "cwh";
             myds.Tables[0].Columns["出院科室"].ColumnName = "cyks";
+            myds.Tables[0].Columns["主手术名称"].ColumnName = "ssmc";
+            myds.Tables[0].Columns["分组名称"].ColumnName = "fzmc";
 
             myds.Tables[0].Columns.Add("ryrq", Type.GetType("System.DateTime"));
             myds.Tables[0].Columns.Add("cyrq", Type.GetType("System.DateTime"));

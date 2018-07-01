@@ -36,7 +36,10 @@ namespace connecter
             {   ///关闭连接
                 sc.Close();
             }
-            id = (int)ds.Tables[0].Rows[0][0];
+            if (ds.Tables[0].Rows[0][0] != DBNull.Value)
+            {
+                id = (int)ds.Tables[0].Rows[0][0];
+            }
             return id;
         }
 

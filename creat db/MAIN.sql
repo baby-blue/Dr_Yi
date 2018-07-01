@@ -14,7 +14,8 @@ SELECT
        where
        a.CYKS=c.id
  ) as vw
- ON    fkb.hzxm=vw.HZXM 
+ ON
+    fkb.hzxm=vw.HZXM 
     and fkb.cwh=vw.CYCW
     and year(fkb.ryrq)=year(vw.RYRQ)
     and month(fkb.ryrq)=month(vw.RYRQ)
