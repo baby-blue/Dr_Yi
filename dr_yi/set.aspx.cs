@@ -54,6 +54,13 @@ namespace dr_yi
             Sql_connecter mysc = new Sql_connecter();
             maxid = mysc.getmaxid(target);
             mysc.writetoserver(myds.Tables[0],target);
+            divState.InnerHtml += "<br>写入数据库成功！";
+            myds.Tables.RemoveAt(0);
+            int gxts = 0;
+            gxts=mysc.createljb(maxid);
+            divState.InnerHtml += "<br>创建链接表成功：" + gxts.ToString();
+            mysc.writetozb(gxts);
+            divState.InnerHtml += "<br>写入主表成功，任务完成。";
         }
 
         protected void Fixds()
@@ -62,8 +69,6 @@ namespace dr_yi
             myds.Tables[0].Columns.Remove("审核状态");
             myds.Tables[0].Columns.Remove("基金类型");
            // myds.Tables[0].Columns.Remove("分组名称");
-            myds.Tables[0].Columns.Remove("基准点数");
-            myds.Tables[0].Columns.Remove("成本系数");
             myds.Tables[0].Columns.Remove("重新反馈理由");
             myds.Tables[0].Columns.Remove("参保人ID");
             myds.Tables[0].Columns.Remove("病种规则扣款(元)");
@@ -79,7 +84,6 @@ namespace dr_yi
             myds.Tables[0].Columns.Remove("期望主手术名称");
             myds.Tables[0].Columns.Remove("期望分组");
             myds.Tables[0].Columns.Remove("期望分组名称");
-            myds.Tables[0].Columns.Remove("RW");
             myds.Tables[0].Columns.Remove("病例类型");
 
             myds.Tables[0].Columns["分组编码"].ColumnName = "fzbm";
@@ -90,12 +94,16 @@ namespace dr_yi
             myds.Tables[0].Columns["出院科室"].ColumnName = "cyks";
             myds.Tables[0].Columns["主手术名称"].ColumnName = "ssmc";
             myds.Tables[0].Columns["分组名称"].ColumnName = "fzmc";
+            //myds.Tables[0].Columns["RW"].ColumnName = "rw";
 
             myds.Tables[0].Columns.Add("ryrq", Type.GetType("System.DateTime"));
             myds.Tables[0].Columns.Add("cyrq", Type.GetType("System.DateTime"));
             myds.Tables[0].Columns.Add("jsrq", Type.GetType("System.DateTime"));
             myds.Tables[0].Columns.Add("fy", Type.GetType("System.Decimal"));
             myds.Tables[0].Columns.Add("id");
+            myds.Tables[0].Columns.Add("rw");
+            myds.Tables[0].Columns.Add("jzds");
+            myds.Tables[0].Columns.Add("cbxs");
 
             DateTimeFormatInfo dtFormat = new System.Globalization.DateTimeFormatInfo();
             for (int i = 0; i < myds.Tables[0].Rows.Count; i++)
@@ -105,12 +113,18 @@ namespace dr_yi
                 myds.Tables[0].Rows[i]["cyrq"] = Convert.ToDateTime(myds.Tables[0].Rows[i]["出院结算日期"].ToString(), dtFormat);
                 myds.Tables[0].Rows[i]["fy"] = decimal.Parse(myds.Tables[0].Rows[i]["医疗总费用(元)"].ToString());
                 myds.Tables[0].Rows[i]["cwh"] = Fixstr(myds.Tables[0].Rows[i]["cwh"].ToString());
+                myds.Tables[0].Rows[i]["rw"] = decimal.Parse(myds.Tables[0].Rows[i]["RW"].ToString());
+                myds.Tables[0].Rows[i]["jzds"] = decimal.Parse(myds.Tables[0].Rows[i]["基准点数"].ToString());
+                myds.Tables[0].Rows[i]["cbxs"] = decimal.Parse(myds.Tables[0].Rows[i]["成本系数"].ToString());
             }
 
             myds.Tables[0].Columns.Remove("入院日期");
             myds.Tables[0].Columns.Remove("出院日期");
             myds.Tables[0].Columns.Remove("出院结算日期");
             myds.Tables[0].Columns.Remove("医疗总费用(元)");
+            myds.Tables[0].Columns.Remove("RW");
+            myds.Tables[0].Columns.Remove("基准点数");
+            myds.Tables[0].Columns.Remove("成本系数");
             myds.Tables[0].Columns["id"].SetOrdinal(0);
         }
 

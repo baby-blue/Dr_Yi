@@ -57,29 +57,38 @@ CREATE TABLE [dbo].[fkb] (--反馈表，excel上传表
 [cyrq] [datetime] NULL,--出院日期
 [jsrq] [datetime] NULL,--结算日期
 [fy] [money],--医疗费用
-[pjfy] [money],--入组平均费用
+[rw] [numeric](5,2),--rw
+[jzds] [numeric](10,2),--基准点数
+[cbxs] [numeric](5,2),--成本系数
 
 --[cyksid] [int],--出院科室id
 )
 
-/*
+
 CREATE TABLE [dbo].[zb] (--主表，上传表后生成
 [id] [int] NOT NULL identity PRIMARY KEY,
-[jsrq] [datetime] NULL,--结算日期
-[ysgh] [char](10) NULL,--医师工号
-[ysxm] [xmchar] ,--医师姓名
-[hzxm] [xmchar] ,--患者姓名
-[zyh] [zyhchar] ,--真实住院号
-[cyks] [xmchar] ,--出院科室
-[cwh] [char](6) NULL,--床位
-[zdbm] [bmchar] ,--诊断编码
-[zszd] [mcvarchar],--真实诊断
-[ssdm] [bmchar],--手术代码
-[ssmc] [mcvarchar],--手术名称
-[fy] [money],--医疗费用
+[jsrq] [varchar](7) NULL, 
+[cyks][xmchar] NULL,
+[ysgh][xmchar] NULL,--医师工号
+[ysxm][xmchar] NULL,--医师姓名
 [ybzyh] [zyhchar],--医保住院号
+[sjzyh] [zyhchar],--实际住院号
+[hzxm][xmchar],--姓名字段
+[zjfy][money] null,--基准费用
+[sjfy][money] null,--实际费用
+[bl] [decimal](18,2) null,
+[fzbm][bmchar],
+[fzmc][mcvarchar],
+[sjzdbm][bmchar],
+[sjzd][mcvarchar],
+[ssbm][bmchar],
+[ssmc][mcvarchar],
+[sjssmc][mcvarchar],
+[rw] [numeric](5,2) null,--rw
+[jzds] [numeric](10,2) null,--基准点数
+[cbxs] [numeric](5,2) null,--成本系数
 )
-*/
+
 
 CREATE TABLE [dbo].[ljb](--链接表，医保住院号、首页序号索引
 [id] [int] NOT NULL identity PRIMARY KEY,

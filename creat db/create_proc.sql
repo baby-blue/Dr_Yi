@@ -7,6 +7,7 @@ ALTER proc [dbo].[writetoljb]
 as  
 
 begin
+--用法：exec writetoljb 0,'Data Source=172.16.1.2;User ID=sa;Password=sql2k5'
 
 if OBJECT_ID('tempdb..#Tmp') is not null
 drop table #Tmp
@@ -45,13 +46,14 @@ end
 go
 
 ALTER proc [dbo].[lhcx]  
-@ksrq char(10),--开始查询日期
-@jsrq char(10),--结束查询日期
+--@ksrq char(10),--开始查询日期
+--@jsrq char(10),--结束查询日期
+@num int,--查询条数（从ljb更新数获取）
 @conn char(128)--连接字符串
 as  
 
 begin
---用法：exec lhcx '2018-02-01','2018-03-01','Data Source=172.16.1.2;User ID=sa;Password=sql2k5'
+--用法：exec lhcx 100,'Data Source=172.16.1.2;User ID=sa;Password=sql2k5'
 --select @conn='Data Source=172.16.1.2;User ID=sa;Password=sql2k5'
 --select @ksrq='2018-02-01'
 --select @jsrq='2018-03-01'
@@ -63,6 +65,9 @@ if OBJECT_ID('tempdb..#tmp_ssb') is not null
 drop table #tmp_ssb
 
 if OBJECT_ID('tempdb..#tmp_brb') is not null
+drop table #tmp_brb
+
+if OBJECT_ID('tempdb..#tmp_zb') is not null
 drop table #tmp_brb
 
 create table #tmp_ljb --
@@ -91,14 +96,36 @@ create table #tmp_brb --
    [sjzd] [varchar](100) NULL,--实际诊断
 )
 
+CREATE TABLE #tmp_zb (--
+[jsrq] [varchar](7) NULL, 
+[cyks][char](40) NULL,
+[ysgh][char](40) NULL,--医师工号
+[ysxm][char](40) NULL,--医师姓名
+[ybzyh] [char](20)  NULL,--医保住院号
+[sjzyh] [char](20)  NULL,--实际住院号
+[hzxm][char](40) NULL,--姓名字段
+[zjfy][money] null,--基准费用
+[sjfy][money] null,--实际费用
+[bl] [decimal](18,2) null,
+[fzbm] [char](20) null,
+[fzmc][varchar](100) null,
+[sjzdbm][char](20) null,
+[sjzd][varchar](100) null,
+[ssbm][char](20) null,
+[ssmc][varchar](100) null,
+[sjssmc][varchar](100) null,
+[rw] [numeric](5,2) null,--rw
+[jzds] [numeric](10,2) null,--基准点数
+[cbxs] [numeric](5,2) null,--成本系数
+)
+
 
 insert #tmp_ljb
-select ljb.hissyxh as hissyxh,ljb.ybzyh as ybzyb from fkb,ljb
- where
- ljb.ybzyh=fkb.ybzyh
- and fkb.jsrq between @ksrq and @jsrq
- and hissyxh is not null
-group by ljb.hissyxh,ljb.ybzyh
+select top (@num) ljb.hissyxh as hissyxh,ljb.ybzyh as ybzyb from ljb
+group by ljb.id,ljb.hissyxh,ljb.ybzyh
+order by ljb.id desc
+declare @sql3 varchar(8000)
+
 
 
 declare @sql varchar(8000)
@@ -124,7 +151,29 @@ select * from #tmp_ljb
 select * from #tmp_ssb
 select * from #tmp_brb
 */
-select DISTINCT CONVERT(varchar(7), fkb.jsrq, 20) as jsrq,fkb.cyks,brb.ysgh,brb.ysxm,fkb.ybzyh,brb.sjzyh,fkb.hzxm,pjfy.zjfy,fkb.fy as sjfy,cast((pjfy.zjfy/fkb.fy) as decimal(18,2))as bl,fkb.fzbm,fkb.fzmc as fzmc,brb.sjzdbm,brb.sjzd,fkb.ssbm,fkb.ssmc as ssmc,ssb.ssmc as sjssmc
+
+insert #tmp_zb
+select 
+DISTINCT CONVERT(varchar(7), fkb.jsrq, 20) as jsrq,
+fkb.cyks,
+brb.ysgh,
+brb.ysxm,
+fkb.ybzyh,
+brb.sjzyh,
+fkb.hzxm,
+pjfy.zjfy,
+fkb.fy as sjfy,
+cast((pjfy.zjfy/fkb.fy) as decimal(18,2))as bl,
+fkb.fzbm,
+fkb.fzmc as fzmc,
+brb.sjzdbm,
+brb.sjzd,
+fkb.ssbm,
+fkb.ssmc as ssmc,
+ssb.ssmc as sjssmc,
+fkb.rw,
+fkb.jzds,
+fkb.cbxs
  from fkb 
  left join
  #tmp_brb brb
@@ -139,7 +188,9 @@ select DISTINCT CONVERT(varchar(7), fkb.jsrq, 20) as jsrq,fkb.cyks,brb.ysgh,brb.
  on
  fkb.fzbm=pjfy.fzbm
  where
- fkb.jsrq between @ksrq and @jsrq
+ fkb.ybzyh in (select #tmp_ljb.ybzyh from #tmp_ljb)
  order by jsrq,cyks,ysgh
+
+insert into zb(jsrq,cyks,ysgh,ysxm,ybzyh,sjzyh,hzxm,zjfy,sjfy, bl,fzbm,fzmc,sjzdbm,sjzd,ssbm,ssmc,sjssmc,rw,jzds,cbxs) select * from #tmp_zb
 
 end
