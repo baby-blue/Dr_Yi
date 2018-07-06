@@ -15,9 +15,11 @@ namespace dr_yi
     public partial class set : System.Web.UI.Page
     {
         public static DataSet myds;
+
         protected void Page_Load(object sender, EventArgs e)
         {
         }
+
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             //如果以选择文件
@@ -56,6 +58,8 @@ namespace dr_yi
             mysc.writetoserver(myds.Tables[0],target);
             divState.InnerHtml += "<br>写入数据库成功！";
             myds.Tables.RemoveAt(0);
+            excelview.DataSource = null;
+            excelview.DataBind();
             int gxts = 0;
             gxts=mysc.createljb(maxid);
             divState.InnerHtml += "<br>创建链接表成功：" + gxts.ToString();

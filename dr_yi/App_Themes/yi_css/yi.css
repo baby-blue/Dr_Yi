@@ -1,0 +1,59 @@
+﻿body {
+    margin: 0px;
+}
+
+.headbar {
+    width: 100%;
+    height: 150px;
+    margin: 0px;
+    background-image: url('headbarbg.JPG');
+}
+
+.dhbar {
+    margin: 0px;
+    width: 100%;
+    height: 30px;
+    background-image: url('dhbarbg.jpg');
+    border-style: none;
+}
+
+.lbbar {
+    height: 100%;
+    margin: 0px;
+    width: 100%;
+}
+
+.lbbarer {
+    cursor: pointer;
+    background-image: url('dhbarbg.jpg');
+    width: 100%;
+    height: 30px;
+    margin: 0px;
+}
+
+    .lbbarer :hover {
+        color: #ff0000;
+    }
+
+.mainform {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    margin: 0px;
+    height: 314px;
+    float: right;
+    clear: right;
+    overflow: hidden;
+}
+
+.centerframe {
+    background-color: white;
+    
+}
+
+.bottom {
+    background-color: #edf5ff;
+}
+
+
+
