@@ -127,5 +127,29 @@ namespace connecter
             }
             return rtn;
         }
+
+        public DataSet getks()
+        {
+            string sql ="select cyks from fkb where cyks IS NOT NULL group by cyks";
+            string conn = ConfigurationManager.ConnectionStrings["drgs_constr"].ConnectionString;
+            SqlConnection sc = new SqlConnection(conn);
+            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+            DataSet ds = new DataSet();
+            try
+            {   ///打开连接
+                sc.Open();
+                ///填充数据
+                da.Fill(ds);
+            }
+            catch (Exception ex)
+            {   ///抛出异常
+                throw new Exception(ex.Message, ex);
+            }
+            finally
+            {   ///关闭连接
+                sc.Close();
+            }
+            return ds;
+        }
     }
 }

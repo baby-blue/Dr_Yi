@@ -4,18 +4,22 @@
 
 .headbar {
     width: 100%;
-    height: 150px;
+    height: 0px;
     margin: 0px;
     background-image: url('headbarbg.JPG');
 }
 
 .dhbar {
+    display: table;
     margin: 0px;
     width: 100%;
-    height: 30px;
-    background-image: url('dhbarbg.jpg');
-    border-style: none;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.80);
+    text-align: center;
+    margin: 0px;
+    cursor: pointer;
 }
+
 
 .lbbar {
     height: 100%;
@@ -24,16 +28,18 @@
 }
 
 .lbbarer {
-    cursor: pointer;
-    background-image: url('dhbarbg.jpg');
-    width: 100%;
-    height: 30px;
-    margin: 0px;
+    display: table-cell;
+    width: 80px;
+    color: white;
 }
 
-    .lbbarer :hover {
-        color: #ff0000;
+
+
+    .lbbarer:hover {
+        background-color: black;
     }
+
+
 
 .mainform {
     height: 100%;
@@ -48,12 +54,12 @@
 
 .centerframe {
     background-color: white;
-    
 }
 
 .bottom {
     background-color: #edf5ff;
 }
 
-
-
+.centerdiv{
+    padding: 10px ;
+}

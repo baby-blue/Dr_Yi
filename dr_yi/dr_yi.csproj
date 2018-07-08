@@ -56,16 +56,13 @@
   <ItemGroup>
     <Content Include="App_Themes\yi_css\bg.jpg" />
     <Content Include="App_Themes\yi_css\dhbarbg.jpg" />
-    <Content Include="App_Themes\yi_css\gridbg.jpg" />
     <Content Include="App_Themes\yi_css\headbarbg.JPG" />
     <Content Include="App_Themes\yi_css\yi.css" />
-    <Content Include="main\drgs.aspx" />
     <Content Include="main.aspx" />
-    <Content Include="main\Bottom.aspx" />
-    <Content Include="main\Left.aspx" />
-    <Content Include="main\Overview.aspx" />
-    <Content Include="main\pbwin.aspx" />
-    <Content Include="main\Top.aspx" />
+    <Content Include="mainpage\drgs.aspx" />
+    <Content Include="mainpage\Bottom.aspx" />
+    <Content Include="mainpage\Left.aspx" />
+    <Content Include="mainpage\Top.aspx" />
     <Content Include="set.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -74,13 +71,6 @@
   <ItemGroup>
     <Compile Include="code\analyzer.cs" />
     <Compile Include="code\connecter.cs" />
-    <Compile Include="main\drgs.aspx.cs">
-      <DependentUpon>drgs.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="main\drgs.aspx.designer.cs">
-      <DependentUpon>drgs.aspx</DependentUpon>
-    </Compile>
     <Compile Include="main.aspx.cs">
       <DependentUpon>main.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -88,25 +78,27 @@
     <Compile Include="main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
     </Compile>
-    <Compile Include="main\Bottom.aspx.cs">
+    <Compile Include="mainpage\drgs.aspx.cs">
+      <DependentUpon>drgs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mainpage\drgs.aspx.designer.cs">
+      <DependentUpon>drgs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mainpage\Bottom.aspx.cs">
       <DependentUpon>Bottom.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="main\Left.aspx.cs">
+    <Compile Include="mainpage\Left.aspx.cs">
       <DependentUpon>Left.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="main\Overview.aspx.cs">
-      <DependentUpon>Overview.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="main\pbwin.aspx.cs">
-      <DependentUpon>pbwin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="main\Top.aspx.cs">
+    <Compile Include="mainpage\Top.aspx.cs">
       <DependentUpon>Top.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mainpage\Top.aspx.designer.cs">
+      <DependentUpon>Top.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="set.aspx.cs">
