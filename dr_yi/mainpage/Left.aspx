@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Left.aspx.cs" StylesheetTheme="yi_css" Inherits="main_leftFrame" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Left.aspx.cs" StylesheetTheme="yi_css"  Inherits="dr_yi.mainpage.Left" %>
 
 <!DOCTYPE html>
 

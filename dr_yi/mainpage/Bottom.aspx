@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Bottom.aspx.cs" StylesheetTheme="yi_css" Inherits="main_Bottom" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Bottom.aspx.cs" StylesheetTheme="yi_css" Inherits="dr_yi.mainpage.Bottom" %>
 
 <!DOCTYPE html>
 
@@ -9,7 +9,7 @@
 </head>
 <body class="bottom">
     <form id="form1" runat="server">
-<div style="text-align:center; height: 25px;">power by blue and my moon</div>
+<div style="text-align:center; height: 25px;">power by blue</div>
     </form>
 </body>
 </html>

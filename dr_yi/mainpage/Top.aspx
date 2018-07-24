@@ -25,7 +25,7 @@
                     confirm('敬请期待');
                 }
                 function showdrgs() {
-                    window.parent.window.frames["centerFrame"].window.location.href = '../main/drgs.aspx';
+                    window.parent.window.frames["centerFrame"].window.location.href = '../mainpage/drgs.aspx';
                 }
             </script>
     </form>
