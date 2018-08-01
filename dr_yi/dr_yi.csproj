@@ -59,10 +59,13 @@
     <Content Include="App_Themes\yi_css\headbarbg.JPG" />
     <Content Include="App_Themes\yi_css\yi.css" />
     <Content Include="code\DatePicker.js" />
+    <Content Include="ico.png" />
     <Content Include="main.aspx" />
+    <Content Include="main1.aspx" />
     <Content Include="mainpage\Bottom.aspx" />
     <Content Include="mainpage\drgs.aspx" />
     <Content Include="mainpage\Left.aspx" />
+    <Content Include="mainpage\tools.aspx" />
     <Content Include="mainpage\Top.aspx" />
     <Content Include="set.aspx" />
     <Content Include="Web.config">
@@ -78,6 +81,13 @@
     </Compile>
     <Compile Include="main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="main1.aspx.cs">
+      <DependentUpon>main1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="main1.aspx.designer.cs">
+      <DependentUpon>main1.aspx</DependentUpon>
     </Compile>
     <Compile Include="mainpage\Bottom.aspx.cs">
       <DependentUpon>Bottom.aspx</DependentUpon>
@@ -99,6 +109,13 @@
     </Compile>
     <Compile Include="mainpage\Left.aspx.designer.cs">
       <DependentUpon>Left.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mainpage\tools.aspx.cs">
+      <DependentUpon>tools.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mainpage\tools.aspx.designer.cs">
+      <DependentUpon>tools.aspx</DependentUpon>
     </Compile>
     <Compile Include="mainpage\Top.aspx.cs">
       <DependentUpon>Top.aspx</DependentUpon>

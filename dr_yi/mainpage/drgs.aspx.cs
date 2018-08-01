@@ -15,7 +15,7 @@ namespace dr_yi
         {
             if (!Page.IsPostBack)
             {
-                loadks();
+                //loadks();
             }
         }
 

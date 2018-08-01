@@ -6,9 +6,13 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>DRGS助手</title>
-    <script type="text/javascript" src="../code/DatePicker.js"></script>
+    <script type="text/javascript" src="../code/DatePicker.js">
+    </script>
 </head>
 <body class="centerframe">
+    <script type="text/javascript">
+        window.parent.document.title = document.title;
+    </script>
     <form id="form1" runat="server">
         <div class="centerdiv">
             <div>
@@ -17,9 +21,9 @@
                 </asp:DropDownList>
                 <label>月份：</label>
                 <asp:TextBox ID="rqBox1" runat="server" onclick="setmonth(this)"> </asp:TextBox>
-                <label >医生工号：</label>
+                <label>医生工号：</label>
                 <asp:TextBox ID="ghBox2" runat="server"></asp:TextBox>
-                <label>   </label>
+                <label></label>
                 <asp:Button ID="Button1" runat="server" Text="查询" OnClick="Button1_Click" />
             </div>
             <asp:Label ID="Label1" runat="server"></asp:Label>

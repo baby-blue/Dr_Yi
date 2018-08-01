@@ -9,7 +9,7 @@
 </head>
 <body class="bottom">
     <form id="form1" runat="server">
-<div style="text-align:center; height: 25px;">power by blue</div>
+<div style="text-align:center; height: 25px;color:white">power by blue</div>
     </form>
 </body>
 </html>

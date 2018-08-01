@@ -8,30 +8,27 @@
     <title></title>
     <script type="text/javascript"></script>
 </head>
-<body>
+<body style="background-color:gray">
     <form>
         <table id="t" runat="server" cellpadding="0" cellspacing="0" style="width: 200px; text-align: center; margin: 0px;">
             <tr>
-                <td onclick="showdrgs();">DRGS</td>
+                <td onclick="c();">业务量查询</td>
             </tr>
             <tr>
-                <td onclick="c();">排班表</td>
+                <td onclick="c();">用药预警</td>
             </tr>
             <tr>
-                <td onclick="c();">查号易</td>
+                <td onclick="c();">出院回访</td>
             </tr>
         </table>
         <script>
             var t = document.getElementById('t').getElementsByTagName('tr'),
                 len = t.length;
             for (var i = 0; i < len; i++) {
-                t[i].className = 'lbbarer';
+               // t[i].className = 'lbbarer';
             }
             function c() {
                 confirm('敬请期待');
-            }
-            function showdrgs() {
-                window.parent.window.frames["centerFrame"].window.location.href = '../main/drgs.aspx';
             }
         </script>
     </form>
