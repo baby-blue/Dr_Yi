@@ -1,6 +1,10 @@
 USE drgsdb
 GO
 
+set ANSI_NULLS ON
+set QUOTED_IDENTIFIER ON
+GO
+
 ALTER proc [dbo].[writetoljb]  
 @begid int,
 @conn [varchar](128)
@@ -22,26 +26,28 @@ declare @sql varchar(8000)
 select @sql='
 insert #Tmp
 SELECT
- vw.HISSYXH as hissyxh,fkb.ybzyh
+ vw.SYXH as hissyxh,fkb.ybzyh
  FROM fkb
  LEFT JOIN
- OPENDATASOURCE( ''SQLOLEDB'','''+@conn+''').CISDB.dbo.EMR_BRSYK as vw
+ OPENDATASOURCE( ''SQLOLEDB'','''+@conn+''').CISDB.dbo.CPOE_BRSYK as vw
  ON
     fkb.hzxm=vw.HZXM 
-    and fkb.cwh=vw.CYCW
-    and year(fkb.ryrq)=year(vw.RYRQ)
-    and month(fkb.ryrq)=month(vw.RYRQ)
-    and day(fkb.ryrq)=day(vw.RYRQ)
+    and year(fkb.ryrq)=SUBSTRING(vw.RYRQ,1,4)
+    and month(fkb.ryrq)=SUBSTRING(vw.RYRQ,5,2)
+    and day(fkb.ryrq)=SUBSTRING(vw.RYRQ,7,2)
+    and fkb.cyks=vw.KSMC
 where
  fkb.id >'+convert(varchar(20),@begid)+'
  group by 
- hissyxh,ybzyh'
+ syxh,ybzyh'
 
  exec(@sql)
 
  insert into ljb(hissyxh,ybzyh) select * from #Tmp
 
 end
+
+
 
 go
 
@@ -193,4 +199,41 @@ fkb.cbxs
 
 insert into zb(jsrq,cyks,ysgh,ysxm,ybzyh,sjzyh,hzxm,zjfy,sjfy, bl,fzbm,fzmc,sjzdbm,sjzd,ssbm,ssmc,sjssmc,rw,jzds,cbxs) select * from #tmp_zb
 
+end
+
+
+go
+
+ALTER proc [dbo].[zbcx]  
+@where char(3000)--查询条件字符串
+as  
+
+begin
+--用法：exec zbcx ''
+
+
+declare @sql varchar(8000)
+select @sql='
+select DISTINCT jsrq as 结算日期,
+cyks as 出院科室,
+ysgh as 工号,
+ysxm as 医生,
+ybzyh as 医保住院号,
+sjzyh as 住院号,
+hzxm as 患者姓名,
+zjfy as 基准费用,
+sjfy  as 实际费用,
+bl as 倍率,
+fzbm as 分组编码,
+fzmc as 分组名称,
+sjzdbm as 实际诊断编码,
+sjzd as 实际诊断,
+ssbm as 手术编码,
+ssmc as 手术名称,
+sjssmc as 实际手术,
+rw as rw,
+jzds as 基准点数,
+cbxs as 成本系数
+ from zb'+@where
+exec(@sql) 
 end

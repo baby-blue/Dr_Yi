@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace dr_yi.mainpage
 {
-    public partial class Bottom : System.Web.UI.Page
+    public partial class bottom : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

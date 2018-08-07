@@ -15,7 +15,7 @@ namespace dr_yi
         {
             if (!Page.IsPostBack)
             {
-                //loadks();
+                loadks();
             }
         }
 
@@ -66,5 +66,31 @@ namespace dr_yi
                 GridView1.DataBind();
             }
         }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            GridView1.AllowPaging = false;
+
+            ToExcel(this.GridView1, System.Web.HttpUtility.UrlEncode("导出.xls", System.Text.Encoding.UTF8));
+
+        }
+        private void ToExcel(Control ctl, string FileName)
+        {
+            HttpContext.Current.Response.Charset = "UTF-8";
+            HttpContext.Current.Response.ContentEncoding = System.Text.Encoding.UTF8;
+            HttpContext.Current.Response.ContentType = "application/ms-excel";
+            HttpContext.Current.Response.AppendHeader("Content-Disposition", "attachment;filename=" + "" + FileName);
+            ctl.Page.EnableViewState = false;
+            System.IO.StringWriter tw = new System.IO.StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(tw);
+            ctl.RenderControl(hw);
+            HttpContext.Current.Response.Write(tw.ToString());
+            HttpContext.Current.Response.End();
+        }
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+
+        }
+
     }
 }

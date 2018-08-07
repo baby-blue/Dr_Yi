@@ -152,17 +152,24 @@ namespace connecter
             return ds;
         }
 
-        public DataSet getzb( string sql1)
+        public DataSet getzb(string sql1)
         {
-            string sql = "select * from zb where "+sql1;
+            string sql2 = " where " + sql1;
             string conn = ConfigurationManager.ConnectionStrings["drgs_constr"].ConnectionString;
-            SqlConnection sc = new SqlConnection(conn);
-            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+            string sql = "zbcx";//要调用的存储过程名  
+
+            
+            SqlConnection conStr = new SqlConnection(conn);//SQL数据库连接对象，以数据库链接字符串为参数  
+            SqlCommand comStr = new SqlCommand(sql, conStr);//SQL语句执行对象，第一个参数是要执行的语句，第二个是数据库连接对象  
+            comStr.CommandType = CommandType.StoredProcedure;//因为要使用的是存储过程，所以设置执行类型为存储过程  
+            //依次设定存储过程的参数  
+            comStr.Parameters.Add("@where", SqlDbType.Text).Value = sql2;
+            SqlDataAdapter da = new SqlDataAdapter(comStr);
             DataSet ds = new DataSet();
+
             try
             {   ///打开连接
-                sc.Open();
-                ///填充数据
+                conStr.Open();
                 da.Fill(ds);
             }
             catch (Exception ex)
@@ -171,8 +178,9 @@ namespace connecter
             }
             finally
             {   ///关闭连接
-                sc.Close();
+                conStr.Close();//关闭连接
             }
+
             return ds;
         }
     }

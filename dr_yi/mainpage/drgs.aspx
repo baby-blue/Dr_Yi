@@ -25,6 +25,7 @@
                 <asp:TextBox ID="ghBox2" runat="server"></asp:TextBox>
                 <label></label>
                 <asp:Button ID="Button1" runat="server" Text="查询" OnClick="Button1_Click" />
+                <asp:Button ID="Button2" runat="server" Text="导出Excel" OnClick="Button2_Click" />
             </div>
             <asp:Label ID="Label1" runat="server"></asp:Label>
             <div style="height: 20px"></div>

@@ -10,7 +10,7 @@
 namespace dr_yi.mainpage {
     
     
-    public partial class Bottom {
+    public partial class bottom {
         
         /// <summary>
         /// form1 控件。

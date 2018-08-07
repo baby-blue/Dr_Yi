@@ -61,8 +61,7 @@
     <Content Include="code\DatePicker.js" />
     <Content Include="ico.png" />
     <Content Include="main.aspx" />
-    <Content Include="main1.aspx" />
-    <Content Include="mainpage\Bottom.aspx" />
+    <Content Include="mainpage\bottom.aspx" />
     <Content Include="mainpage\drgs.aspx" />
     <Content Include="mainpage\Left.aspx" />
     <Content Include="mainpage\tools.aspx" />
@@ -82,19 +81,12 @@
     <Compile Include="main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
     </Compile>
-    <Compile Include="main1.aspx.cs">
-      <DependentUpon>main1.aspx</DependentUpon>
+    <Compile Include="mainpage\bottom.aspx.cs">
+      <DependentUpon>bottom.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="main1.aspx.designer.cs">
-      <DependentUpon>main1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="mainpage\Bottom.aspx.cs">
-      <DependentUpon>Bottom.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="mainpage\Bottom.aspx.designer.cs">
-      <DependentUpon>Bottom.aspx</DependentUpon>
+    <Compile Include="mainpage\bottom.aspx.designer.cs">
+      <DependentUpon>bottom.aspx</DependentUpon>
     </Compile>
     <Compile Include="mainpage\drgs.aspx.cs">
       <DependentUpon>drgs.aspx</DependentUpon>
